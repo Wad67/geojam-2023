@@ -11,89 +11,35 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 moveDirection;
 
-    InventoryController InventoryController;
-
-    InventoryUI.GameState state;
-
     public bool canMove;
 
-
-    [SerializeField] InventoryUI inventoryUI;
-    private void Start()
+    void Update()
     {
-        canMove = true;
-        state = InventoryUI.GameState.FreeRoam;
+        ProcessInputs();  
     }
-    private void Awake()
-    {
-        InventoryController = GetComponent<InventoryController>();
-        InventoryController.Closeinventory();
-    }
-
-
-    private void Update()
-    {
-        Debug.Log(state);
-        if (!canMove)
+    void FixedUpdate()
         {
-            rb.velocity = Vector2.zero;
-            return;
+            Move();
         }
 
-        ProcessInputs();
-
-        if (state == InventoryUI.GameState.Bag)
+        void ProcessInputs()
         {
-            Action onBack = () =>
-            {
-                inventoryUI.gameObject.SetActive(false);
-                state = InventoryUI.GameState.FreeRoam;
-                //unfreeze player movement
-                canMove = true;
-            };
+            float moveX = Input.GetAxisRaw("Horizontal");
+            float moveY = Input.GetAxisRaw("Vertical");
 
-
-            inventoryUI.HandleUpdate(onBack);
-        }
-        else if (state == InventoryUI.GameState.FreeRoam)
-        {
-
-            
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                InventoryController.Openinventory();
-                inventoryUI.ChangeState(InventoryUI.GameState.Bag);
-
-                //freeze player movement
-                canMove = false;
-            }
+            moveDirection = new Vector2(moveX, moveY).normalized;
         }
 
-    }
+        void Move()
 
-    private void FixedUpdate()
-    {
-        Move();
-         
-    }
+        {
+            rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        }
 
-    void ProcessInputs()
-    {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
 
-        moveDirection = new Vector2(moveX, moveY).normalized;
-    }
 
-    void Move()
-    
-    {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);  
-    }
+
 
     
-
-
-
 }
 
