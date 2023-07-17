@@ -16,6 +16,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         ProcessInputs();  
+
+        if(!canMove)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
+
     }
     void FixedUpdate()
         {
