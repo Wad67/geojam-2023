@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class NPCMovement : MonoBehaviour
 {
-
     public float moveSpeed;
     public Rigidbody2D myRigidbody2D;
-   
     public bool isWalking;
-    
     public float walkTime;
     private float walkCounter;
     public float waitTime;
     private float waitCounter;
-
     private int walkDirection;
-
+    private Animator anim;
     public bool canMove;
     private DialogueManager theDM;
 
@@ -24,19 +20,15 @@ public class NPCMovement : MonoBehaviour
     void Start()
     {
         theDM = FindObjectOfType<DialogueManager>();
-
         waitCounter = waitTime;
         walkCounter = walkTime;
-
         ChooseDirection();
-
         canMove = true;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
-
-
     {
         if (!theDM.dialogueIsPlaying)
         {
@@ -48,28 +40,28 @@ public class NPCMovement : MonoBehaviour
             myRigidbody2D.velocity = Vector2.zero;
             return;
         }
+
         if (isWalking)
         {
             walkCounter -= Time.deltaTime;
-            
-            
 
-            switch(walkDirection)
+            switch (walkDirection)
             {
-                case 0:;
-                    myRigidbody2D.velocity = new Vector2 ( 0, moveSpeed );
+                case 0:
+                    myRigidbody2D.velocity = new Vector2(0, moveSpeed);
+                    anim.SetFloat("MoveY", 1); // Set the "MoveY" parameter in the Animator for up movement
                     break;
-
-                case 1:;
+                case 1:
                     myRigidbody2D.velocity = new Vector2(moveSpeed, 0);
+                    anim.SetFloat("MoveY", 0); // Set the "MoveY" parameter in the Animator for right movement
                     break;
-
-                case 2:;
+                case 2:
                     myRigidbody2D.velocity = new Vector2(0, -moveSpeed);
+                    anim.SetFloat("MoveY", -1); // Set the "MoveY" parameter in the Animator for down movement
                     break;
-
-                case 3:;
+                case 3:
                     myRigidbody2D.velocity = new Vector2(-moveSpeed, 0);
+                    anim.SetFloat("MoveY", 0); // Set the "MoveY" parameter in the Animator for left movement
                     break;
             }
 
@@ -77,6 +69,7 @@ public class NPCMovement : MonoBehaviour
             {
                 isWalking = false;
                 waitCounter = waitTime;
+                anim.SetBool("isWalking", false); // Set the "isWalking" parameter to false to trigger the idle animation
             }
         }
         else
@@ -85,9 +78,10 @@ public class NPCMovement : MonoBehaviour
 
             myRigidbody2D.velocity = Vector2.zero;
 
-            if(waitCounter < 0 )
+            if (waitCounter < 0)
             {
                 ChooseDirection();
+                anim.SetBool("isWalking", true); // Set the "isWalking" parameter to true to trigger the walk animation
             }
         }
     }
@@ -96,7 +90,6 @@ public class NPCMovement : MonoBehaviour
     {
         walkDirection = Random.Range(0, 4);
         isWalking = true;
-
         walkCounter = walkTime;
     }
 }

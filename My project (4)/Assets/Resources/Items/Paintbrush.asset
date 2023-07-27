@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Paintbrush
   m_EditorClassIdentifier: 
   displayName: Paintbrush
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: f0b6e291ad4d1174ba987c73d59caa70, type: 3}

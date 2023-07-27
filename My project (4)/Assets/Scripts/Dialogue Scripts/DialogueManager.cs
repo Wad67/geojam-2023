@@ -10,6 +10,9 @@ using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Audio")]
+    private AudioSource typingAudioSource;
+
     [Header("Dialogue UI")]
 
     [SerializeField] private GameObject DialoguePanel;
@@ -28,6 +31,10 @@ public class DialogueManager : MonoBehaviour
     private PlayerMovement thePlayer;
 
     private static DialogueManager instance;
+
+    public List<Quest> allQuests = new List<Quest>();
+
+    
     void Awake()
     {
         if (instance != null)
@@ -35,6 +42,7 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Found more than one DialogueManager in the scene");
         }
         instance = this;
+
     }
 
     public static DialogueManager GetInstance()
@@ -45,6 +53,8 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
+        allQuests.Add(new Quest("Find the Lost Sheep", false));
+
         thePlayer = FindObjectOfType<PlayerMovement>();
 
         dialogueIsPlaying = false;
@@ -70,8 +80,13 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         DialoguePanel.SetActive(true);
 
+        currentStory.BindExternalFunction("Start_Quest", (string questName) => {
+            StartQuest(questName);
+        });
+
         ContinueStory();
     }
+
 
     private void Update()
     {
@@ -104,11 +119,64 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("The player can move now");
     }
 
+    private bool skip = false;
+
+    private IEnumerator TypeSentence(string sentence)
+    {
+        DialogueText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            DialogueText.text += letter;
+
+            // Play the typing audio clip every time a letter is appended
+            if (typingAudioSource && typingAudioSource.clip)
+            {
+                typingAudioSource.Play();
+            }
+
+            // If skip becomes true, break from the loop
+            if (skip)
+            {
+                DialogueText.text = sentence;
+                break;
+            }
+            yield return new WaitForSeconds(0.05f); // adjust this value to change typing speed
+        }
+        skip = false;
+    }
+
+
+    public void StartQuest(string questName)
+    {
+        Quest quest = allQuests.Find(q => q.questName == questName);
+        if (quest != null)
+        {
+            quest.isCompleted = false;
+            Debug.Log("Quest " + questName + " started.");
+        }
+        else
+        {
+            Debug.Log("Quest not found.");
+        }
+    }
+
+
     private void ContinueStory()
     {
         if (currentStory.canContinue)
         {
-            DialogueText.text = currentStory.Continue();
+            string nextLine = currentStory.Continue();
+
+            // If a typing effect is ongoing, skip it, else start a new typing effect
+            if (DialogueText.text == nextLine)
+            {
+                skip = true;
+            }
+            else
+            {
+                StopAllCoroutines();
+                StartCoroutine(TypeSentence(nextLine));
+            }
 
             DisplayChoices();
         }
@@ -117,6 +185,9 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(ExitDialogueMode());
         }
     }
+
+
+
 
     private void DisplayChoices()
     {
