@@ -38,6 +38,8 @@ public class NPCMovement : MonoBehaviour
         if (!canMove)
         {
             myRigidbody2D.velocity = Vector2.zero;
+            anim.SetBool("isWalking", false); // Set the "isWalking" parameter to false to trigger the breathing/waiting animation
+            isWalking = false; // Set isWalking to false when the NPC can't move
             return;
         }
 
@@ -50,18 +52,22 @@ public class NPCMovement : MonoBehaviour
                 case 0:
                     myRigidbody2D.velocity = new Vector2(0, moveSpeed);
                     anim.SetFloat("MoveY", 1); // Set the "MoveY" parameter in the Animator for up movement
+                    anim.SetFloat("MoveX", 0); // Set the "MoveX" parameter in the Animator for vertical movement
                     break;
                 case 1:
                     myRigidbody2D.velocity = new Vector2(moveSpeed, 0);
-                    anim.SetFloat("MoveY", 0); // Set the "MoveY" parameter in the Animator for right movement
+                    anim.SetFloat("MoveY", 0); // Set the "MoveY" parameter in the Animator for horizontal movement
+                    anim.SetFloat("MoveX", 1); // Set the "MoveX" parameter in the Animator for right movement
                     break;
                 case 2:
                     myRigidbody2D.velocity = new Vector2(0, -moveSpeed);
                     anim.SetFloat("MoveY", -1); // Set the "MoveY" parameter in the Animator for down movement
+                    anim.SetFloat("MoveX", 0); // Set the "MoveX" parameter in the Animator for vertical movement
                     break;
                 case 3:
                     myRigidbody2D.velocity = new Vector2(-moveSpeed, 0);
-                    anim.SetFloat("MoveY", 0); // Set the "MoveY" parameter in the Animator for left movement
+                    anim.SetFloat("MoveY", 0); // Set the "MoveY" parameter in the Animator for horizontal movement
+                    anim.SetFloat("MoveX", -1); // Set the "MoveX" parameter in the Animator for left movement
                     break;
             }
 
@@ -69,7 +75,7 @@ public class NPCMovement : MonoBehaviour
             {
                 isWalking = false;
                 waitCounter = waitTime;
-                anim.SetBool("isWalking", false); // Set the "isWalking" parameter to false to trigger the idle animation
+                anim.SetBool("isWalking", false); // Set the "isWalking" parameter to false to trigger the breathing/waiting animation
             }
         }
         else
@@ -89,7 +95,7 @@ public class NPCMovement : MonoBehaviour
     public void ChooseDirection()
     {
         walkDirection = Random.Range(0, 4);
-        isWalking = true;
+        isWalking = true; // Set isWalking to true when starting to walk
         walkCounter = walkTime;
     }
 }
