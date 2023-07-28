@@ -64,6 +64,7 @@ public class DialogueManager : MonoBehaviour
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         thePlayer.canMove = false;
+        Debug.Log("The player can not move");
 
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
@@ -78,10 +79,12 @@ public class DialogueManager : MonoBehaviour
         {
             return;
             
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Space)|| (Input.GetKeyDown(KeyCode.Mouse0))) //click space to continue dialogue
         {
+
             ContinueStory();
 
 
@@ -98,6 +101,7 @@ public class DialogueManager : MonoBehaviour
         DialogueText.text = "";
 
         thePlayer.canMove = true;
+        Debug.Log("The player can move now");
     }
 
     private void ContinueStory()
@@ -107,7 +111,6 @@ public class DialogueManager : MonoBehaviour
             DialogueText.text = currentStory.Continue();
 
             DisplayChoices();
-
         }
         else
         {
@@ -117,6 +120,7 @@ public class DialogueManager : MonoBehaviour
 
     private void DisplayChoices()
     {
+
         List<Choice> currentChoices = currentStory.currentChoices;
 
         // defensive check to make sure our UI can support the number of choices coming in
