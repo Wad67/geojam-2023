@@ -6,6 +6,7 @@ using TMPro;
 
 public class inventorySlot : MonoBehaviour
 {
+
     public Image icon;
     public TextMeshProUGUI labelText;
     public TextMeshProUGUI stackSizeText;

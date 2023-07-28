@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e46dd388401674b8fe7a6d167d32bc, type: 3}
   m_Name: SportsDrink
   m_EditorClassIdentifier: 
-  displayName: Sport Drink
-  icon: {fileID: 0}
+  displayName: Sports Drink
+  icon: {fileID: 21300000, guid: e7ffa0065268a64b383b831f7c92d379, type: 3}
