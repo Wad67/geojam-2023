@@ -38,11 +38,7 @@ public class NPCMovement : MonoBehaviour
 
 
     {
-        if (!theDM.dialogueIsPlaying)
-        {
-            canMove = true;
-        }
-
+	canMove = theDM.canNPCMove;
         if (!canMove)
         {
             myRigidbody2D.velocity = Vector2.zero;

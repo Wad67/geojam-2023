@@ -18,6 +18,11 @@ public class DialogueTrigger : MonoBehaviour
 
 
     private DialogueManager manager;
+    
+    
+    private GameObject playerObject;
+    
+    public int npcID = 0;
 
     private void Start()
     {
@@ -34,7 +39,7 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (Input.GetKeyDown(KeyCode.I))
             {
-                manager.EnterDialogueMode(inkJSON);
+                manager.EnterDialogueMode(npcID,playerObject);
 
                 if(transform.parent.GetComponent<NPCMovement>() != null)
                 {
@@ -54,6 +59,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+       	    playerObject = collider.gameObject;
             playerInRange = true;
         }
     }

@@ -98,7 +98,8 @@ public class GameManager : MonoBehaviour
         
         
         // Remove the original SpriteRenderer component (since it's no longer needed)
-        Destroy(item.GetComponent<SpriteRenderer>());		
+        Destroy(item.GetComponent<SpriteRenderer>());	
+        items.Add(item);
     }
 
     public void LoadScene(int idx)
@@ -154,5 +155,39 @@ public class GameManager : MonoBehaviour
         backingTrack.volume = value;
         topTrack.volume = value;
     }
+    
+    // Check if the player has the specified number of items
+    public bool HasItems(string itemName, int count)
+    {
+        // Find all items in the items list that have the specified name
+        List<GameObject> matchingItems = items.FindAll(item => item.name.Contains(itemName));
+
+        // If the number of matching items is greater than or equal to the required count, return true
+        return matchingItems.Count >= count;
+    }
+
+	// Remove the specified number of items from the inventory
+	public void RemoveItems(string itemName, int count)
+	{
+	    // Find all items in the items list that have the specified name
+	    List<GameObject> matchingItems = items.FindAll(item => item.name.Contains(itemName));
+
+	    // Check if there are enough items to remove
+	    if (matchingItems.Count >= count)
+	    {
+		// Remove the required number of items from the inventory
+		for (int i = 0; i < count; i++)
+		{
+		    GameObject itemToRemove = matchingItems[i];
+		    items.Remove(itemToRemove);
+		    Destroy(itemToRemove);
+		}
+	    }
+	    else
+	    {
+		Debug.LogError("Insufficient items to remove.");
+	    }
+	}
+
 }
 
