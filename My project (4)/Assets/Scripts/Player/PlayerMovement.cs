@@ -29,12 +29,19 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         moveTimer += Time.deltaTime;
-        ProcessInputs();  
+        
+        
+        
 
         if (!canMove)
         {
+            moveDirection = Vector2.zero;
             rb.velocity = Vector2.zero;
             return;
+        }else{
+        
+            ProcessInputs();  
+        
         }
 
         // Calculate the frame index for the current direction
