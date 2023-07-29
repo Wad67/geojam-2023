@@ -16,18 +16,15 @@ public class DialogueTrigger : MonoBehaviour
     private bool playerInRange;
 
 
-    [Header("Dialogue Manager")]
-    [SerializeField] public GameObject Dm;
-
 
     private DialogueManager manager;
 
-    private void Awake()
+    private void Start()
     {
+        manager = FindObjectOfType<DialogueManager>();
         playerInRange = false;
         visualCue.SetActive(false);
-        manager = Dm.GetComponent<DialogueManager>();
-        
+
     }
 
     private void Update()

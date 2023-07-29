@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2203908255284253529}
   - component: {fileID: 5658764718777007139}
   - component: {fileID: 1367203989499758393}
-  - component: {fileID: 5344528868153454659}
+  - component: {fileID: -4635395608723991747}
   m_Layer: 0
   m_Name: Money
   m_TagString: Untagged
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22638528, y: 0.27030122}
   m_EdgeRadius: 0
---- !u!114 &5344528868153454659
+--- !u!114 &-4635395608723991747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7868747841772322679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c40f369ed8c5a5b42a79cd29041cb4e4, type: 3}
+  m_Script: {fileID: 11500000, guid: ae9309a946d03798e9d8a805b11d473d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrinkData: {fileID: 11400000, guid: 048330a108a1ae220a7d18ec083cad6a, type: 2}

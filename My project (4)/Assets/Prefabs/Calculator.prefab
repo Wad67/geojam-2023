@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7082561253825985139}
   - component: {fileID: 8230235109701269860}
   - component: {fileID: 2343781653659717583}
-  - component: {fileID: 279761807826103620}
+  - component: {fileID: 264590722228942730}
   m_Layer: 0
   m_Name: Calculator
   m_TagString: Untagged
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.20375897, y: 0.20702572}
   m_EdgeRadius: 0
---- !u!114 &279761807826103620
+--- !u!114 &264590722228942730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2331072631442191495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9041bc0460082ab4fbc29e7f10f4f675, type: 3}
+  m_Script: {fileID: 11500000, guid: ae9309a946d03798e9d8a805b11d473d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CalculatorData: {fileID: 11400000, guid: 6fee432cb2aefca40871d686c68a9c30, type: 2}

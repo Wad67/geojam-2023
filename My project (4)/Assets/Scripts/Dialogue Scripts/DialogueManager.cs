@@ -63,6 +63,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+    	thePlayer = FindObjectOfType<PlayerMovement>();
         thePlayer.canMove = false;
         Debug.Log("The player can not move");
 
@@ -94,6 +95,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator ExitDialogueMode()
     {
+    	thePlayer = FindObjectOfType<PlayerMovement>();
         yield return new WaitForSeconds(0.2f);
 
         dialogueIsPlaying = false;

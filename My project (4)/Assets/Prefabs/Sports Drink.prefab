@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7337711693067861021}
   - component: {fileID: 2570644254888121518}
   - component: {fileID: 7432413247696531748}
-  - component: {fileID: 5958514669529294892}
+  - component: {fileID: 276601542125476327}
   m_Layer: 0
   m_Name: Sports Drink
   m_TagString: Untagged
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22638528, y: 0.27030122}
   m_EdgeRadius: 0
---- !u!114 &5958514669529294892
+--- !u!114 &276601542125476327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3381526897411892292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c40f369ed8c5a5b42a79cd29041cb4e4, type: 3}
+  m_Script: {fileID: 11500000, guid: ae9309a946d03798e9d8a805b11d473d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrinkData: {fileID: 11400000, guid: 5ddbafa106179ec45a545b692c6fca19, type: 2}
