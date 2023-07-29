@@ -2397,6 +2397,8 @@ MonoBehaviour:
   topTrack: {fileID: 948945824}
   slidingPanel: {fileID: 1101976513}
   volumeSlider: {fileID: 316451334}
+  questCount: 3
+  counterValue: {fileID: 1474746089}
 --- !u!4 &1658385246
 Transform:
   m_ObjectHideFlags: 0
@@ -2431,6 +2433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialoguePanel: {fileID: 6499335067237750179}
   DialogueText: {fileID: 6499335069091938380}
+  sportsDrinkTuckshopLady: {fileID: 3381526897411892292, guid: 92dec610868017cf9b872b4de04d00f0, type: 3}
   canNPCMove: 1
   ericaIntroText: "Hello there! You\u2019re new here, aren\u2019t you? I\u2019m a
     little stressed out. I have a basketball tournament later.\nThat reminds me,
@@ -2445,6 +2448,27 @@ MonoBehaviour:
     I really need them before my tournament
     starts!'
   ericaOutroText: "Thanks to you, I\u2019m going to ace this tournament!"
+  ericaStage: 0
+  tuckladyIntroText: '*The tuckshop lady''s enormous fucking bingo wings bounce around
+    as she gesticulates wildly*
+
+    What you wantem kid?'
+  tuckladyRequirementText: "You wantem sports drink? \nAHHH FIDDY BUCKS"
+  tuckladyOutroText: 'Since I am hideous
+
+    this doesn''t count as a quest
+
+    suck
+    it'
+  tucklady: 0
+  calckidIntroText: Today I have a maths test but some asshole stole my calculator
+  calckidRequirementText: Find my calculator, bitch
+  calckidOutroText: Thanks idiot
+  calckid: 0
+  paintkidIntroText: 'H-HELLO I L-L-LOST MY PAINBRUISH! ! ! '
+  paintkidRequirementText: GET IT   A PAINT A BRUSH I DONTWANTO FINGER PAINT
+  paintkidOutroText: 'HAR HAR THANKS U '
+  paintkid: 0
 --- !u!1 &1678075007
 GameObject:
   m_ObjectHideFlags: 0

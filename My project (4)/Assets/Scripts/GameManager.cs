@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class GameManager : MonoBehaviour
     private Vector3 panelStartPosition;
     private Vector3 panelEndPosition;
     public Slider volumeSlider;
+    
+    public int questCount = 3;
+    
+    public TextMeshProUGUI counterValue;
+    
+    private bool isFirstLevelLoaded = false;
+
     
     bool backingPlaying = false;
     bool topPlaying = false;
@@ -62,17 +70,27 @@ public class GameManager : MonoBehaviour
         volumeSlider.onValueChanged.AddListener(ChangeVolume);
     }
 
-    void Update()
-    {
-        time += Time.deltaTime;
+	void Update()
+	{
+		counterValue.text = questCount.ToString();
+	    if (isFirstLevelLoaded)
+	    {
+		time += Time.deltaTime;
+	    }
 
-        if (!backingTrack.isPlaying)
-        {
-            backingTrack.clip = musicLooping[0];
-            backingTrack.loop = true;
-            backingTrack.Play();
-        }
-    }
+	    if (!backingTrack.isPlaying)
+	    {
+		backingTrack.clip = musicLooping[0];
+		backingTrack.loop = true;
+		backingTrack.Play();
+	    }
+	    if (questCount <= 0)
+	    {
+	    	
+		LoadScene(2);
+	    }
+	}
+
 
     public void AddItem(GameObject item)
     {
@@ -102,10 +120,16 @@ public class GameManager : MonoBehaviour
         items.Add(item);
     }
 
-    public void LoadScene(int idx)
-    {
-        SceneManager.LoadScene(gameScenes[idx]);
-    }
+	public void LoadScene(int idx)
+	{
+	    if (idx == 1 && !isFirstLevelLoaded)
+	    {
+		isFirstLevelLoaded = true;
+	    }
+
+	    SceneManager.LoadScene(gameScenes[idx]);
+	}
+
     
     public void ToggleMenu()
     {
@@ -179,7 +203,11 @@ public class GameManager : MonoBehaviour
 		for (int i = 0; i < count; i++)
 		{
 		    GameObject itemToRemove = matchingItems[i];
-		    items.Remove(itemToRemove);
+
+		    // Call the method to handle the removal and update the serialized properties
+		    HandleItemRemoval(itemToRemove);
+
+		    // Destroy the game object after removing it from the list
 		    Destroy(itemToRemove);
 		}
 	    }
@@ -188,6 +216,22 @@ public class GameManager : MonoBehaviour
 		Debug.LogError("Insufficient items to remove.");
 	    }
 	}
+
+	// Method to handle item removal and update serialized properties
+	private void HandleItemRemoval(GameObject itemToRemove)
+	{
+	    int index = items.IndexOf(itemToRemove);
+
+	    if (index >= 0 && index < items.Count)
+	    {
+		// Remove the item from the items list
+		items.RemoveAt(index);
+
+		// Handle updating the serialized properties here
+		// For example, if using a SerializedObject, update the property array size or use DeleteArrayElementAtIndex to remove the element at the specified index.
+	    }
+	}
+
 
 }
 
