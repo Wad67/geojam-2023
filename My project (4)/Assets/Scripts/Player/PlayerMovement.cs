@@ -1,53 +1,83 @@
-
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-
+using System.Collections;
+using System.Collections.Generic;
+// I could have used the very contrived unity animation system, but I elected not to 
+// This just cycles through ranges of frames, based on direction
 public class PlayerMovement : MonoBehaviour
-
 {
+    public List<Sprite> frames;
+    public SpriteRenderer playerSprite;
+    public float frameCycleSpeed = 0.5f;
     public float moveSpeed;
     public Rigidbody2D rb;
     private Vector2 moveDirection;
 
+    private float moveTimer;
+    private int currentDirectionFrameOffset;
+    private int currentDirectionFrameCount;
+
     public bool canMove;
+
+    void Start()
+    {
+        currentDirectionFrameOffset = 0;
+        currentDirectionFrameCount = 4; // Assuming 4 frames for each direction
+    }
 
     void Update()
     {
+        moveTimer += Time.deltaTime;
         ProcessInputs();  
 
-        if(!canMove)
+        if (!canMove)
         {
             rb.velocity = Vector2.zero;
             return;
         }
 
-
+        // Calculate the frame index for the current direction
+        int frameIndex = currentDirectionFrameOffset + (int)(moveTimer / frameCycleSpeed) % currentDirectionFrameCount;
+        playerSprite.sprite = frames[frameIndex];
     }
+
     void FixedUpdate()
+    {
+        Move();
+    }
+
+    void ProcessInputs()
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+
+        moveDirection = new Vector2(moveX, moveY).normalized;
+
+        // Update the current direction frame offset and count
+        if (moveDirection == Vector2.zero)
         {
-            Move();
+            // No movement (idle)
+            currentDirectionFrameOffset = 8;
+            currentDirectionFrameCount = 1;
         }
-
-        void ProcessInputs()
+        else if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
         {
-            float moveX = Input.GetAxisRaw("Horizontal");
-            float moveY = Input.GetAxisRaw("Vertical");
-
-            moveDirection = new Vector2(moveX, moveY).normalized;
+            // Horizontal movement
+            currentDirectionFrameOffset = (moveDirection.x > 0) ? 9 : 4;
+            currentDirectionFrameCount = 4;
         }
-
-        void Move()
-
+        else
         {
-            rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+            // Vertical movement
+            currentDirectionFrameOffset = (moveDirection.y > 0) ? 0 : 13;
+            currentDirectionFrameCount = 4;
         }
+    }
 
-
-
-
-
-    
+    void Move()
+    {
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
 }
 
