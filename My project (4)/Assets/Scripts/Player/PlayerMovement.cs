@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private int currentDirectionFrameCount;
 
     public bool canMove;
+    public float fsT = 0;
+    public float footStepT = 0.3f;
+    private bool isLeftFootstep = true;
 
     void Start()
     {
@@ -41,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         }else{
         
             ProcessInputs();  
+            
         
         }
 
@@ -75,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             currentDirectionFrameCount = 4;
         }
         else
-        {
+        {	
             // Vertical movement
             currentDirectionFrameOffset = (moveDirection.y > 0) ? 0 : 13;
             currentDirectionFrameCount = 4;
@@ -84,7 +88,27 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+    	if (moveDirection != Vector2.zero){
+    	        fsT += Time.deltaTime;
+    	        }
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        if (fsT >= footStepT){
+            // Get a random volume between minVolume and maxVolume
+            float volume = UnityEngine.Random.Range(0.4f, 1.0f);
+
+            // Play the footstep sound based on the footstep type (left or right)
+            int footstepIndex = isLeftFootstep ? 4 : 5;
+            GameManager.Instance.gameSoundsSource.PlayOneShot(GameManager.Instance.gameSounds[footstepIndex], volume);
+
+            // Alternate the footstep type for the next step
+            isLeftFootstep = !isLeftFootstep;
+
+            // Reset the footstep timer
+            fsT = 0;
+        }
+        
+        }
+        
     }
-}
+
 

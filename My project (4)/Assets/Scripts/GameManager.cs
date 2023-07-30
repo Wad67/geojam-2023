@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI counterValue;
 
     private bool isFirstLevelLoaded = false;
+    
+    
+    private int currentIntro = 0;
+    private int currentLoop = 0;
 
     void Awake()
     {
@@ -83,6 +87,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         volumeSlider.onValueChanged.AddListener(ChangeVolume);
+        ChangeVolume(volumeSlider.value);
     }
 
     void Update()
@@ -92,11 +97,9 @@ public class GameManager : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-
         if (!backingTrack.isPlaying)
         {
-            backingTrack.clip = musicLooping[0];
-            backingTrack.loop = true;
+            backingTrack.clip = musicIntro[currentIntro];
             backingTrack.Play();
         }
         if (questCount <= 0)
@@ -129,6 +132,7 @@ public class GameManager : MonoBehaviour
         // Remove the original SpriteRenderer component (since it's no longer needed)
         Destroy(item.GetComponent<SpriteRenderer>());
         items.Add(item);
+        gameSoundsSource.PlayOneShot(gameSounds[6]);
     }
 
     public void LoadScene(int idx)
@@ -185,7 +189,7 @@ public class GameManager : MonoBehaviour
         value = Mathf.Clamp01(value);
 
         // Adjust the volume of the AudioSources based on the slider value
-        gameSoundsSource.volume = value;
+        //gameSoundsSource.volume = value;
         backingTrack.volume = value;
     }
 
@@ -243,33 +247,19 @@ public class GameManager : MonoBehaviour
 
     public void ChangeMusicSequence(int introIndex, int loopIndex)
     {
-        // Make sure the provided indices are within the bounds of the musicIntro and musicLooping lists
         if (introIndex < 0 || introIndex >= musicIntro.Count || loopIndex < 0 || loopIndex >= musicLooping.Count)
         {
             Debug.LogError("Invalid intro or loop index provided.");
             return;
         }
-
-        // Stop the current music
+        
         backingTrack.Stop();
-
-        // Set the intro track and start playing it
-        backingTrack.clip = musicIntro[introIndex];
         backingTrack.loop = false;
-        backingTrack.Play();
+        
+        currentIntro = introIndex;
+        currentLoop = loopIndex;
 
-        // Start the loop track after the intro track finishes
-        StartCoroutine(StartLoopAfterIntroFinishes(musicIntro[introIndex].length, loopIndex));
     }
 
-    private IEnumerator StartLoopAfterIntroFinishes(float delay, int loopIndex)
-    {
-        yield return new WaitForSeconds(delay);
-
-        // Set the loop track and start playing it
-        backingTrack.clip = musicLooping[loopIndex];
-        backingTrack.loop = true;
-        backingTrack.Play();
-    }
 }
 
