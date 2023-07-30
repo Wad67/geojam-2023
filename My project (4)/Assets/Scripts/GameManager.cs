@@ -34,9 +34,7 @@ public class GameManager : MonoBehaviour
 
     private bool isFirstLevelLoaded = false;
 
-    bool backingPlaying = false;
-
-    private void Awake()
+    void Awake()
     {
         if (_instance != null && _instance != this)
         {
@@ -103,7 +101,6 @@ public class GameManager : MonoBehaviour
         }
         if (questCount <= 0)
         {
-
             LoadScene(2);
         }
     }
@@ -244,71 +241,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
-public void ChangeMusicSequence(int introIndex, int loopIndex)
-{
-    // Make sure the provided indices are within the bounds of the musicIntro and musicLooping lists
-    if (introIndex < 0 || introIndex >= musicIntro.Count || loopIndex < 0 || loopIndex >= musicLooping.Count)
+    public void ChangeMusicSequence(int introIndex, int loopIndex)
     {
-        Debug.LogError("Invalid intro or loop index provided.");
-        return;
+        // Make sure the provided indices are within the bounds of the musicIntro and musicLooping lists
+        if (introIndex < 0 || introIndex >= musicIntro.Count || loopIndex < 0 || loopIndex >= musicLooping.Count)
+        {
+            Debug.LogError("Invalid intro or loop index provided.");
+            return;
+        }
+
+        // Stop the current music
+        backingTrack.Stop();
+
+        // Set the intro track and start playing it
+        backingTrack.clip = musicIntro[introIndex];
+        backingTrack.loop = false;
+        backingTrack.Play();
+
+        // Start the loop track after the intro track finishes
+        StartCoroutine(StartLoopAfterIntroFinishes(musicIntro[introIndex].length, loopIndex));
     }
 
-    StartCoroutine(ChangeMusicWithFade(introIndex, loopIndex));
-}
-
-private IEnumerator ChangeMusicWithFade(int introIndex, int loopIndex)
-{
-    // Fade out the backing track
-    float fadeOutDuration = 1.0f; // Adjust the fade-out duration as needed
-    float currentTime = 0.0f;
-    float initialBackingVolume = backingTrack.volume;
-
-    while (currentTime < fadeOutDuration)
+    private IEnumerator StartLoopAfterIntroFinishes(float delay, int loopIndex)
     {
-        currentTime += Time.deltaTime;
-        float normalizedTime = currentTime / fadeOutDuration;
-        float newBackingVolume = Mathf.Lerp(initialBackingVolume, 0.0f, normalizedTime);
-        backingTrack.volume = newBackingVolume;
-        yield return null;
+        yield return new WaitForSeconds(delay);
+
+        // Set the loop track and start playing it
+        backingTrack.clip = musicLooping[loopIndex];
+        backingTrack.loop = true;
+        backingTrack.Play();
     }
-
-    // Ensure the volume is set to 0 at the end of the fade-out
-    backingTrack.volume = 0.0f;
-
-    // Change the intro track to the new intro
-    backingTrack.clip = musicIntro[introIndex];
-
-    // Start playing the intro sequence
-    backingTrack.Play();
-
-    // Set up an event to trigger when the intro finishes playing
-    backingTrack.loop = false;
-    backingTrack.GetComponent<AudioSource>().loop = false;
-    backingTrack.GetComponent<AudioSource>().SetScheduledEndTime(AudioSettings.dspTime + musicIntro[introIndex].samples / (float)AudioSettings.outputSampleRate);
-
-    // Wait until the intro is done playing
-    yield return new WaitForSeconds(backingTrack.clip.length);
-
-    // Start playing the loop sequence and loop it
-    backingTrack.clip = musicLooping[loopIndex];
-    backingTrack.Play();
-    backingTrack.loop = true;
-
-    // Fade in the backing track
-    float fadeInDuration = 1.0f; // Adjust the fade-in duration as needed
-    currentTime = 0.0f;
-    while (currentTime < fadeInDuration)
-    {
-        currentTime += Time.deltaTime;
-        float normalizedTime = currentTime / fadeInDuration;
-        float newBackingVolume = Mathf.Lerp(0.0f, 1.0f, normalizedTime);
-        backingTrack.volume = newBackingVolume;
-        yield return null;
-    }
-
-    // Ensure the volume is set to 1 at the end of the fade-in
-    backingTrack.volume = 1.0f;
-}
-
 }
 
