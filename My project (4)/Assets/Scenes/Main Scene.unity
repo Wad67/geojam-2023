@@ -789,8 +789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b6ef677915354e94a23d6c9184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicIntroSequence: 7
-  musicLoopSequence: 7
+  musicIntroSequence: 6
+  musicLoopSequence: 6
 --- !u!60 &65414478
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2847,8 +2847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b6ef677915354e94a23d6c9184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicIntroSequence: 5
-  musicLoopSequence: 5
+  musicIntroSequence: 4
+  musicLoopSequence: 4
 --- !u!60 &398067249
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3289,8 +3289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b6ef677915354e94a23d6c9184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicIntroSequence: 2
-  musicLoopSequence: 2
+  musicIntroSequence: 1
+  musicLoopSequence: 1
 --- !u!60 &475955513
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4194,8 +4194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b6ef677915354e94a23d6c9184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicIntroSequence: 6
-  musicLoopSequence: 6
+  musicIntroSequence: 5
+  musicLoopSequence: 5
 --- !u!60 &604450396
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4961,8 +4961,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b6ef677915354e94a23d6c9184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicIntroSequence: 4
-  musicLoopSequence: 4
+  musicIntroSequence: 3
+  musicLoopSequence: 3
 --- !u!60 &712889243
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6757,8 +6757,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b6ef677915354e94a23d6c9184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicIntroSequence: 9
-  musicLoopSequence: 9
+  musicIntroSequence: 8
+  musicLoopSequence: 8
 --- !u!60 &952448762
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8008,8 +8008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b6ef677915354e94a23d6c9184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicIntroSequence: 1
-  musicLoopSequence: 1
+  musicIntroSequence: 0
+  musicLoopSequence: 0
 --- !u!60 &1237182293
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10221,8 +10221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b6ef677915354e94a23d6c9184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicIntroSequence: 3
-  musicLoopSequence: 3
+  musicIntroSequence: 2
+  musicLoopSequence: 2
 --- !u!60 &1501106315
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -12192,8 +12192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b6ef677915354e94a23d6c9184b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicIntroSequence: 8
-  musicLoopSequence: 8
+  musicIntroSequence: 7
+  musicLoopSequence: 7
 --- !u!60 &1804469665
 PolygonCollider2D:
   m_ObjectHideFlags: 0

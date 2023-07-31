@@ -2500,8 +2500,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 969746624}
   m_HandleRect: {fileID: 969746623}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3170,27 +3170,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9590ad2109c19a7a8a287aaeff21e174, type: 3}
   - {fileID: 8300000, guid: 48b4c45812a8eea6693fe8cb21780bb0, type: 3}
   musicLooping:
-  - {fileID: 8300000, guid: 7bc42c40223956cc5b0913446857fc0c, type: 3}
-  - {fileID: 8300000, guid: 5fff86d4515260a89b3bc39ff85435d4, type: 3}
-  - {fileID: 8300000, guid: bd4a7d400b7d69127bab2b6f4debe54b, type: 3}
-  - {fileID: 8300000, guid: 9c2bd626dfac6f64d9e3f6e67d6ec9c3, type: 3}
-  - {fileID: 8300000, guid: 1a8efdb725db0c37fbddf8e22f1a5972, type: 3}
-  - {fileID: 8300000, guid: 8f98d72fc4693a99ab62460184f07669, type: 3}
-  - {fileID: 8300000, guid: b93c3a149803900b182a0c54574e2248, type: 3}
-  - {fileID: 8300000, guid: 762083836ea3eefa2b5cc9bdcb4067ea, type: 3}
-  - {fileID: 8300000, guid: ef2af55d3c3bc4c48b9262fb6e64d7f3, type: 3}
-  - {fileID: 8300000, guid: 69637a89cf29f479d852cca0670e8abb, type: 3}
-  musicIntro:
-  - {fileID: 8300000, guid: 8f5261d0db85aaa9d9e2ea9f2a78748b, type: 3}
-  - {fileID: 8300000, guid: 4e3a5550732c8b102aed8b5b32a2a85e, type: 3}
-  - {fileID: 8300000, guid: 78c8ec746e72b5cffa2e6e0e10cbe473, type: 3}
-  - {fileID: 8300000, guid: cde3e76d2bb526633b5da1ef37ce2c54, type: 3}
-  - {fileID: 8300000, guid: 770e86335c56933c9a431b4d67ad0cf0, type: 3}
-  - {fileID: 8300000, guid: 14fdb83af4cc7d5dfa591e5809e21ff0, type: 3}
-  - {fileID: 8300000, guid: 5366b4886809fdd01b039bc31256a029, type: 3}
-  - {fileID: 8300000, guid: 17052cbd8feb6b22584c22268f580b1f, type: 3}
-  - {fileID: 8300000, guid: f2005a65719324888bac8c5b9db658ba, type: 3}
-  - {fileID: 8300000, guid: 5ab5d171e2026ee33a3a500b3f98a956, type: 3}
+  - {fileID: 8300000, guid: 9fce9464d8ec41c5594bcbb5d80ffdfd, type: 3}
+  - {fileID: 8300000, guid: ba1e8f6df5d326c2a9e36c2975fedb2b, type: 3}
+  - {fileID: 8300000, guid: 215b953a3ececee9a87297d3560b3e06, type: 3}
+  - {fileID: 8300000, guid: e486c7e06961e07fa883db30040c0ae7, type: 3}
+  - {fileID: 8300000, guid: 2c9e3739c97ee4417b6ffdefceb85068, type: 3}
+  - {fileID: 8300000, guid: 71f543a8acb3529e7920e48e91eaeb24, type: 3}
+  - {fileID: 8300000, guid: ebd8a5a6450116aa5b1e7a23e9f4ed58, type: 3}
+  - {fileID: 8300000, guid: 6e5175b3861461996b1b1b4910eb463e, type: 3}
+  - {fileID: 8300000, guid: eaf7f1064cf692b469b5c0250e37e549, type: 3}
   items: []
   inventoryPanel: {fileID: 2076177076}
   time: 0
@@ -3250,8 +3238,8 @@ MonoBehaviour:
     starts!'
   ericaOutroText: "Thanks to you, I\u2019m going to ace this tournament!"
   ericaStage: 0
-  tuckladyIntroText: '*The tuckshop lady''s enormous fucking bingo wings bounce around
-    as she gesticulates wildly*
+  tuckladyIntroText: '*The tuckshop lady''s enormous  bingo wings bounce around as
+    she gesticulates wildly*
 
     What you wantem kid?'
   tuckladyRequirementText: "You wantem sports drink? \nAHHH FIDDY BUCKS"
@@ -3259,16 +3247,24 @@ MonoBehaviour:
 
     this doesn''t count as a quest
 
-    suck
-    it'
+    sucker'
   tucklady: 0
-  calckidIntroText: Today I have a maths test but some asshole stole my calculator
-  calckidRequirementText: Find my calculator, bitch
+  calckidIntroText: Today I have a maths test but some !&$!! stole my calculator
+  calckidRequirementText: Find my calculator, stupid
   calckidOutroText: Thanks idiot
   calckid: 0
-  paintkidIntroText: 'H-HELLO I L-L-LOST MY PAINBRUISH! ! ! '
-  paintkidRequirementText: GET IT   A PAINT A BRUSH I DONTWANTO FINGER PAINT
-  paintkidOutroText: 'HAR HAR THANKS U '
+  paintkidIntroText: "Hi! Lovely to meet you. I\u2019m getting ready to paint something
+    for my mum. It\u2019s her birthday tomorrow.\nBefore I start, I need to check
+    that I have everything I need.\n3 pots of paint, all ready . . .\n2 easels .
+    . .\na paintbrush? Hm . . .\nI don't have my paintbrushes!"
+  paintkidRequirementText: I need to finish painting today. Could you help find my
+    paintbrush, please?
+  paintkidOutroText: ' There they are! Much appreciated.
+
+    I can finally paint
+    my mum something for her birthday!
+
+    My mum is going to love this!'
   paintkid: 0
 --- !u!1 &1709407436
 GameObject:

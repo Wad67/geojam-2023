@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     public List<string> gameScenes;
     public List<AudioClip> gameSounds;
     public List<AudioClip> musicLooping;
-    public List<AudioClip> musicIntro;
     public List<GameObject> items;
     public GameObject inventoryPanel;
 
@@ -51,8 +50,6 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
-        backingTrack.clip = musicIntro[0];
-        backingTrack.Play();
 
         // Store the start and end anchored positions for slidingPanel animation
         panelStartPosition = slidingPanel.GetComponent<RectTransform>().anchoredPosition;
@@ -68,10 +65,6 @@ public class GameManager : MonoBehaviour
 
     private void PreloadAudioClips()
     {
-        foreach (AudioClip clip in musicIntro)
-        {
-            clip.LoadAudioData();
-        }
 
         foreach (AudioClip clip in musicLooping)
         {
@@ -99,7 +92,7 @@ public class GameManager : MonoBehaviour
         }
         if (!backingTrack.isPlaying)
         {
-            backingTrack.clip = musicIntro[currentIntro];
+            backingTrack.clip = musicLooping[currentLoop];
             backingTrack.Play();
         }
         if (questCount <= 0)
@@ -244,12 +237,12 @@ public class GameManager : MonoBehaviour
             // For example, if using a SerializedObject, update the property array size or use DeleteArrayElementAtIndex to remove the element at the specified index.
         }
     }
-
+	//intro is cut now
     public void ChangeMusicSequence(int introIndex, int loopIndex)
     {
-        if (introIndex < 0 || introIndex >= musicIntro.Count || loopIndex < 0 || loopIndex >= musicLooping.Count)
+        if (loopIndex < 0 || loopIndex >= musicLooping.Count)
         {
-            Debug.LogError("Invalid intro or loop index provided.");
+            Debug.LogError("Invalid loop index provided.");
             return;
         }
         
