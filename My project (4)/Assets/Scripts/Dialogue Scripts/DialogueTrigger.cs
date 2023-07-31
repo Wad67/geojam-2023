@@ -17,6 +17,7 @@ public class DialogueTrigger : MonoBehaviour
 
 
     private DialogueManager manager;
+    private PlayerMovement playermovement;
     
     
     private GameObject playerObject;
@@ -26,6 +27,7 @@ public class DialogueTrigger : MonoBehaviour
     private void Start()
     {
         manager = FindObjectOfType<DialogueManager>();
+        playermovement = FindObjectOfType<PlayerMovement>();
         playerInRange = false;
         visualCue.SetActive(false);
 
@@ -36,7 +38,8 @@ public class DialogueTrigger : MonoBehaviour
         if (playerInRange ) 
         {
             visualCue.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.E))
+            if ( playermovement.canMove){
+            if (Input.GetKeyDown(KeyCode.E ))
             {
                 manager.EnterDialogueMode(npcID,playerObject);
 
@@ -45,7 +48,7 @@ public class DialogueTrigger : MonoBehaviour
                     transform.parent.GetComponent<NPCMovement>().canMove = false;
                 }
             }
-        }
+        }}
         else
         {
             visualCue.SetActive(false);
