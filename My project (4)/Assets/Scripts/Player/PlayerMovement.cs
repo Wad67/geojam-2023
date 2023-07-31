@@ -13,15 +13,18 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canMove;
 
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Update()
     {
-        ProcessInputs();  
+        ProcessInputs();
 
-        if(!canMove)
-        {
-            rb.velocity = Vector2.zero;
-            return;
-        }
+        anim.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
+        anim.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
 
 
     }
@@ -42,7 +45,13 @@ public class PlayerMovement : MonoBehaviour
 
         {
             rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+
+        if (!canMove)
+        {
+            rb.velocity = Vector2.zero;
+            return;
         }
+    }
 
 
 
